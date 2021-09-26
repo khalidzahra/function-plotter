@@ -10,10 +10,12 @@ CONFIG += c++11
 
 SOURCES += \
     main.cpp \
-    functionplotter.cpp
+    functionplotter.cpp \
+    qcustomplot.cpp
 
 HEADERS += \
-    functionplotter.h
+    functionplotter.h \
+    qcustomplot.h
 
 FORMS += \
     functionplotter.ui
