@@ -17,5 +17,15 @@ public:
 
 private:
     Ui::FunctionPlotter *ui;
+    /**
+     * Initializes the user display with appropriate settings
+     */
+    void setupDisplay();
+
+private slots:
+    /**
+     * Plots the given equation on the graph
+     */
+    void onPlotButtonClick();
 };
 #endif // FUNCTIONPLOTTER_H
