@@ -52,6 +52,7 @@ void FunctionPlotter::onPlotButtonClick() {
 bool FunctionPlotter::validateEquation(std::string &equation) {
     if (!isValidEquation(equation)) {
         QMessageBox messageBox;
+        messageBox.setWindowTitle("Equation Error");
         messageBox.setIcon(messageBox.Critical);
         messageBox.setText("Invalid equation.");
         messageBox.setInformativeText("Supported operators: +-*/^\nThe only supported variable name is 'x'");
@@ -64,6 +65,7 @@ bool FunctionPlotter::validateEquation(std::string &equation) {
 }
 
 bool FunctionPlotter::isValidEquation(std::string &equation) {
+    if (equation.length() == 0) return false;
     std::string prev = "";
     bool lastIsOperator = false;
     for (int i = 0; i < equation.length(); i++) {
