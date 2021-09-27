@@ -67,18 +67,23 @@ bool FunctionPlotter::validateEquation(std::string &equation) {
 bool FunctionPlotter::isValidEquation(std::string &equation) {
     if (equation.length() == 0) return false;
     std::string prev = "";
-    bool lastIsOperator = false;
+    bool lastIsOperator = false, skippedSpace = false;
     for (int i = 0; i < equation.length(); i++) {
-        if (equation[i] == ' ') continue;
+        if (equation[i] == ' ') {
+            skippedSpace = true;
+            continue;
+        }
         if (!isDigitOrX(equation[i]) && !isOperator(equation[i])) return false;
         if (isDigitOrX(equation[i])) {
-            if ((isCharacterX(equation[i]) && prev.length() != 0) || isCharacterX(prev[prev.length() - 1])) return false;
+            if ((isCharacterX(equation[i]) && prev.length() != 0) || isCharacterX(prev[prev.length() - 1]) || (prev.length() != 0 && skippedSpace)) return false;
             prev += equation[i];
             lastIsOperator = false;
+            skippedSpace = false;
         } else {
             if (prev.length() == 0) return false;
             prev = "";
             lastIsOperator = true;
+            skippedSpace = false;
         }
     }
     return !lastIsOperator;
