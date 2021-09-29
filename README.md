@@ -9,6 +9,8 @@ The supported operators are:
 - \* (Multiplication)
 - / (Division)
 - ^ (Exponentiation)
+## Compiler
+MinGW with qmake
 ## Dependencies
 This project only has Qt as a dependency
 ## Libraries
