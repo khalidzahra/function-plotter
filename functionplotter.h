@@ -35,7 +35,7 @@ private:
      * @param equation String variable containing equation to be validated
      * @return Returns true if the equation is valid
      */
-    bool isValidEquation(std::string &equation);
+     bool isValidEquation(std::string &equation);
 
     /**
      * Checks whether the given character is a supported mathematical operator

@@ -5,15 +5,13 @@
 
 FunctionPlotter::FunctionPlotter(QWidget *parent)
     : QMainWindow(parent)
-    , ui(new Ui::FunctionPlotter)
-{
+    , ui(new Ui::FunctionPlotter) {
     ui->setupUi(this);
     setupDisplay();
     connect(ui->plotBtn, SIGNAL(released()), this, SLOT(onPlotButtonClick()));
 }
 
-FunctionPlotter::~FunctionPlotter()
-{
+FunctionPlotter::~FunctionPlotter() {
     delete ui;
 }
 
@@ -49,21 +47,6 @@ void FunctionPlotter::onPlotButtonClick() {
     ui->display->replot();
 }
 
-bool FunctionPlotter::validateEquation(std::string &equation) {
-    if (!isValidEquation(equation)) {
-        QMessageBox messageBox;
-        messageBox.setWindowTitle("Equation Error");
-        messageBox.setIcon(messageBox.Critical);
-        messageBox.setText("Invalid equation.");
-        messageBox.setInformativeText("Supported operators: +-*/^\nThe only supported variable name is 'x'");
-        messageBox.setFixedWidth(300);
-        messageBox.setFixedWidth(200);
-        messageBox.exec();
-        return false;
-    }
-    return true;
-}
-
 bool FunctionPlotter::isValidEquation(std::string &equation) {
     if (equation.length() == 0) return false;
     std::string prev = "";
@@ -87,6 +70,21 @@ bool FunctionPlotter::isValidEquation(std::string &equation) {
         }
     }
     return !lastIsOperator;
+}
+
+bool FunctionPlotter::validateEquation(std::string &equation) {
+    if (!isValidEquation(equation)) {
+        QMessageBox messageBox;
+        messageBox.setWindowTitle("Equation Error");
+        messageBox.setIcon(messageBox.Critical);
+        messageBox.setText("Invalid equation.");
+        messageBox.setInformativeText("Supported operators: +-*/^\nThe only supported variable name is 'x'");
+        messageBox.setFixedWidth(300);
+        messageBox.setFixedWidth(200);
+        messageBox.exec();
+        return false;
+    }
+    return true;
 }
 
 bool FunctionPlotter::isOperator(char ch) {
